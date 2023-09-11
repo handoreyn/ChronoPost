@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{95C6F086-5A4A-4FF2-B5B8-5B644442E462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.Api", "src\ChronoPost.Api\ChronoPost.Api.csproj", "{C67F1D46-70AA-47F8-9937-12F53782EF35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.Core", "src\ChronoPost.Core\ChronoPost.Core.csproj", "{E39B5D5F-3D46-419E-A355-82FEF897C150}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.Infrastructure", "src\ChronoPost.Infrastructure\ChronoPost.Infrastructure.csproj", "{2395B49C-3C13-448B-AEC9-999B3606E1D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.UseCases", "src\ChronoPost.UseCases\ChronoPost.UseCases.csproj", "{A2EF2467-71D5-41C1-AFE9-D821DBC543A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F1005E2D-454C-4FB8-B000-8EBA1D8F02AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.ArchitecturalTests", "tests\ChronoPost.ArchitecturalTests\ChronoPost.ArchitecturalTests.csproj", "{4E27EFF3-059C-42A2-86D8-42DB1E40EE82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChronoPost.UseCaseTests", "tests\ChronoPost.UseCaseTests\ChronoPost.UseCaseTests.csproj", "{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C67F1D46-70AA-47F8-9937-12F53782EF35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67F1D46-70AA-47F8-9937-12F53782EF35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67F1D46-70AA-47F8-9937-12F53782EF35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67F1D46-70AA-47F8-9937-12F53782EF35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E39B5D5F-3D46-419E-A355-82FEF897C150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E39B5D5F-3D46-419E-A355-82FEF897C150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E39B5D5F-3D46-419E-A355-82FEF897C150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E39B5D5F-3D46-419E-A355-82FEF897C150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2395B49C-3C13-448B-AEC9-999B3606E1D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2395B49C-3C13-448B-AEC9-999B3606E1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2395B49C-3C13-448B-AEC9-999B3606E1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2395B49C-3C13-448B-AEC9-999B3606E1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EF2467-71D5-41C1-AFE9-D821DBC543A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EF2467-71D5-41C1-AFE9-D821DBC543A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EF2467-71D5-41C1-AFE9-D821DBC543A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EF2467-71D5-41C1-AFE9-D821DBC543A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E27EFF3-059C-42A2-86D8-42DB1E40EE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E27EFF3-059C-42A2-86D8-42DB1E40EE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E27EFF3-059C-42A2-86D8-42DB1E40EE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E27EFF3-059C-42A2-86D8-42DB1E40EE82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C67F1D46-70AA-47F8-9937-12F53782EF35} = {95C6F086-5A4A-4FF2-B5B8-5B644442E462}
+		{E39B5D5F-3D46-419E-A355-82FEF897C150} = {95C6F086-5A4A-4FF2-B5B8-5B644442E462}
+		{2395B49C-3C13-448B-AEC9-999B3606E1D2} = {95C6F086-5A4A-4FF2-B5B8-5B644442E462}
+		{A2EF2467-71D5-41C1-AFE9-D821DBC543A0} = {95C6F086-5A4A-4FF2-B5B8-5B644442E462}
+		{4E27EFF3-059C-42A2-86D8-42DB1E40EE82} = {F1005E2D-454C-4FB8-B000-8EBA1D8F02AC}
+		{F644357B-0CF1-445C-9B5C-E4D17EDF6DF3} = {F1005E2D-454C-4FB8-B000-8EBA1D8F02AC}
+	EndGlobalSection
+EndGlobal
