@@ -1,4 +1,5 @@
 using Ardalis.SharedKernel;
+using ChronoPost.Core.Aggregates;
 using ChronoPost.Core.Enums;
 
 namespace ChronoPost.Core.ValueObjects;
@@ -16,6 +17,7 @@ public class UserCredentialValueObject : ValueObject
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        throw new NotImplementedException();
+        yield return Username;
+        yield return Password;
     }
 }
