@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace ChronoPost.Core;
+namespace ChronoPost.Api;
 
 public static class AssemblyReference
 {
