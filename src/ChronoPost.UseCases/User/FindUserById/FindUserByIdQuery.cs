@@ -2,4 +2,4 @@ using Ardalis.SharedKernel;
 
 namespace ChronoPost.UseCases.User.FindUserById;
 
-public record FindUserByIdQuery(int userId) : IQuery<FindUserByIdQueryResponse>;
+public sealed record FindUserByIdQuery(int UserId) : IQuery<FindUserByIdQueryResponse>;

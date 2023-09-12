@@ -1,19 +1,25 @@
 using Ardalis.SharedKernel;
-using ChronoPost.Core.Abstractions;
+using ChronoPost.Core.Specifications.User;
 
 namespace ChronoPost.UseCases.User.FindUserById;
 
 public sealed class FindUserByIdQueryHandler : IQueryHandler<FindUserByIdQuery, FindUserByIdQueryResponse>
 {
-    private IUserReadRepository _repository;
-
-    public FindUserByIdQueryHandler(IUserReadRepository repository)
+    private readonly IReadRepository<Core.Aggregates.User> _repository;
+    public FindUserByIdQueryHandler(IReadRepository<Core.Aggregates.User> repository)
     {
         _repository = repository;
     }
 
-    public Task<FindUserByIdQueryResponse> Handle(FindUserByIdQuery request, CancellationToken cancellationToken)
+    public async Task<FindUserByIdQueryResponse> Handle(FindUserByIdQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var spec = new UserByIdSpecification(request.UserId);
+
+        var user = await _repository.SingleOrDefaultAsync(spec, cancellationToken);
+        if (user == null) throw new Exception();
+
+        var result = new FindUserByIdQueryResponse(user.Id, user.UserCredentials.Username);
+
+        return result;
     }
 }
