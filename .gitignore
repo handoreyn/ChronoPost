@@ -72,7 +72,7 @@ StyleCopReport.xml
 *_i.c
 *_p.c
 *_h.h
-*.ilk
+*.ik
 *.meta
 *.obj
 *.iobj
@@ -384,6 +384,7 @@ FodyWeavers.xsd
 !.vscode/extensions.json
 *.code-workspace
 
+.idea/
 # Local History for Visual Studio Code
 .history/
 
