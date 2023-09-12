@@ -4,6 +4,7 @@
     <ProjectReference Include="..\ChronoPost.Infrastructure\ChronoPost.Infrastructure.csproj" />
   </ItemGroup>
 
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
