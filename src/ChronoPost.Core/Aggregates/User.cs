@@ -4,7 +4,7 @@ using ChronoPost.Core.ValueObjects;
 
 namespace ChronoPost.Core.Aggregates;
 
-public class User : EntityBase, IAggregateRoot
+public sealed class User : EntityBase, IAggregateRoot
 {
     public UserCredentialValueObject UserCredentials { get; set; }
     public string Email { get; set; }
