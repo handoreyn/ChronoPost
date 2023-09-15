@@ -1,4 +1,5 @@
 using Ardalis.SharedKernel;
+using ChronoPost.Core.Exceptions;
 using ChronoPost.Core.Specifications.User;
 
 namespace ChronoPost.UseCases.User.FindUserById;
@@ -15,8 +16,8 @@ public sealed class FindUserByIdQueryHandler : IQueryHandler<FindUserByIdQuery, 
     {
         var spec = new UserByIdSpecification(request.UserId);
 
-        var user = await _repository.SingleOrDefaultAsync(spec, cancellationToken);
-        if (user == null) throw new Exception();
+        var user = await _repository.GetByIdAsync(request.UserId, cancellationToken);
+        if (user == null) throw new UserDoesNotExistException();
 
         var result = new FindUserByIdQueryResponse(user.Id, user.UserCredentials.Username);
 
