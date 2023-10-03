@@ -7,6 +7,8 @@ public class ChronoPostDatabaseContext : DbContext
 {
     public ChronoPostDatabaseContext(DbContextOptions options) : base(options)
     {
+        Database.EnsureCreated();
+        Database.Migrate();
     }
 
     public required DbSet<User> Users { get; set; }

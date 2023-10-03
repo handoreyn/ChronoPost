@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Ardalis.SharedKernel;
 using ChronoPost.Core.Enums;
 using ChronoPost.Core.ValueObjects;
@@ -16,5 +17,15 @@ public sealed class User : EntityBase, IAggregateRoot
         Email = email;
         Status = status;
         UserCredentials = new UserCredentialValueObject(username, password);
+    }
+
+    [JsonConstructor]
+    public User(int id, UserCredentialValueObject credentials, string email, StatusType status, DateTime createdAt)
+    {
+        Id = id;
+        UserCredentials = credentials;
+        Email = email;
+        Status = status;
+        CreatedAt = createdAt;
     }
 }
