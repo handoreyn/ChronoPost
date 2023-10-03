@@ -16,9 +16,7 @@ public sealed class FindUserByIdQueryHandler : IQueryHandler<FindUserByIdQuery, 
     {
         var spec = new UserByIdSpecification(request.UserId);
 
-        var user = await _repository.GetByIdAsync(request.UserId, cancellationToken);
-        if (user == null) throw new UserDoesNotExistException();
-
+        var user = await _repository.GetByIdAsync(request.UserId, cancellationToken) ?? throw new UserDoesNotExistException();
         var result = new FindUserByIdQueryResponse(user.Id, user.UserCredentials.Username);
 
         return result;

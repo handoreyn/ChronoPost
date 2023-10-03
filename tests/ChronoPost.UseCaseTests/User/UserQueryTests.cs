@@ -25,14 +25,14 @@ public class UserQueryTests
 
         _readRepository = mock.Object;
     }
-    
+
     [Test]
     public async Task FindUserById_UserDoesExist()
     {
         var handler = new FindUserByIdQueryHandler(_readRepository);
         var result = await handler.Handle(new FindUserByIdQuery(1), CancellationToken.None);
         Assert.That(result, Is.Not.Null);
-        
+
     }
 
     [Test]
