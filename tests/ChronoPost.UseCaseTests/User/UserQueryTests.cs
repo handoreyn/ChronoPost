@@ -1,6 +1,5 @@
 using Ardalis.SharedKernel;
 using ChronoPost.Core.Exceptions;
-using ChronoPost.Core.Specifications.User;
 using ChronoPost.UseCases.User.FindUserById;
 using Moq;
 
@@ -35,13 +34,13 @@ public class UserQueryTests
 
     }
 
-    [Test]
-    public void FindUserById_UserDoesNotExist()
+    [TestCase(0)]
+    public void FindUserById_UserDoesNotExist(int userId)
     {
         var handler = new FindUserByIdQueryHandler(_readRepository);
         Assert.CatchAsync<UserDoesNotExistException>(async () =>
         {
-            await handler.Handle(new FindUserByIdQuery(0), CancellationToken.None);
+            await handler.Handle(new FindUserByIdQuery(userId), CancellationToken.None);
         });
     }
 }
