@@ -1,0 +1,29 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  chronopostapi:
+    container_name: chronopostapi
+    image: chronopostapi
+    build:
+      context: ../
+      dockerfile: src/ChronoPost.Api/Dockerfile
+    ports:
+      - 5085:5085
+    networks:
+      - chronopost
+
+  chronopostsql:
+    container_name: chronopostsql
+    image: mcr.microsoft.com/azure-sql-edge
+    environment: 
+      - SA_PASSWORD=A!b2c3€4
+      - ACCEPT_EULA=Y
+    ports:
+      - 6433:1433
+    networks:
+      - chronopost
+
+networks:
+  chronopost:
