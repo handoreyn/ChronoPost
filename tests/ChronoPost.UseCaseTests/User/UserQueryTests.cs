@@ -16,7 +16,8 @@ public class UserQueryTests
         var mock = new Mock<IReadRepository<Core.Aggregates.User>>();
         var user = new Core.Aggregates.User
         {
-            Id = 1
+            Id = 1,
+            UserCredentials = new Core.ValueObjects.UserCredentialValueObject("testuser", "password"),
         };
 
         mock.Setup(o => o.GetByIdAsync(1, CancellationToken.None))
@@ -26,10 +27,11 @@ public class UserQueryTests
     }
 
     [Test]
-    public async Task FindUserById_UserDoesExist()
+    [TestCase(1)]
+    public async Task FindUserById_UserDoesExist(int id)
     {
         var handler = new FindUserByIdQueryHandler(_readRepository);
-        var result = await handler.Handle(new FindUserByIdQuery(1), CancellationToken.None);
+        var result = await handler.Handle(new FindUserByIdQuery(id), CancellationToken.None);
         Assert.That(result, Is.Not.Null);
 
     }
