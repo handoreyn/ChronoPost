@@ -4,6 +4,7 @@ using ChronoPost.UseCases.Users.Queries.FindUserById;
 using ChronoPost.UseCases.Users.Queries.GenerateJwtToken;
 using Microsoft.AspNetCore.Authorization;
 using ChronoPost.UseCases.Users.Commands.CreateUser;
+using ChronoPost.UseCases.Users.Commands.UpdateUser;
 
 namespace ChronoPost.Api.Controllers;
 
@@ -37,9 +38,11 @@ public class AccountController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(int id, UpdateUserCommand model, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await _mediator.Send(model, cancellationToken);
+
+        return NoContent();
     }
 
     [HttpGet("generate-token")]
