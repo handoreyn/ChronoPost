@@ -1,7 +1,7 @@
-using ChronoPost.UseCases.Users.FindUserById;
 using ChronoPost.UseCases.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ChronoPost.UseCases.Users.Queries.FindUserById;
 
 namespace ChronoPost.Api.Controllers;
 

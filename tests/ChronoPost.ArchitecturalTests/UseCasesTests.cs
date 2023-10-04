@@ -1,6 +1,4 @@
-using ChronoPost.Core.Aggregates;
 using ChronoPost.UseCases;
-using ChronoPost.UseCases.Users.FindUserById;
 using FluentAssertions;
 using NetArchTest.Rules;
 

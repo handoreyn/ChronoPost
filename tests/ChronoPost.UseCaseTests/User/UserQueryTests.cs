@@ -1,6 +1,6 @@
 using Ardalis.SharedKernel;
 using ChronoPost.Core.Exceptions;
-using ChronoPost.UseCases.Users.FindUserById;
+using ChronoPost.UseCases.Users.Queries.FindUserById;
 using Moq;
 
 namespace ChronoPost.UseCaseTests.User;
@@ -14,7 +14,7 @@ public class UserQueryTests
     public void FindUserById_UserDoesExist_Setup()
     {
         var mock = new Mock<IReadRepository<Core.Aggregates.User>>();
-        var user = new Core.Aggregates.User("", "", "")
+        var user = new Core.Aggregates.User
         {
             Id = 1
         };
