@@ -2,11 +2,14 @@ using ChronoPost.UseCases.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ChronoPost.UseCases.Users.Queries.FindUserById;
+using ChronoPost.UseCases.Users.Queries.GenerateJwtToken;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChronoPost.Api.Controllers;
 
 [ApiController]
 [Route("api/account")]
+[Authorize]
 public class AccountController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -39,8 +42,11 @@ public class AccountController : ControllerBase
         throw new NotImplementedException();
     }
 
-    public async Task<IActionResult> GetJwtToken(CancellationToken cancellationToken)
+    [HttpGet("generate-token")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetJwtToken([FromForm] GenerateJwtTokenQuery model, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _mediator.Send(model, cancellationToken);
+        return Ok(result);
     }
 }
