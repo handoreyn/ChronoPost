@@ -7,6 +7,7 @@ public sealed class UserByUserCredentialSpecification : Specification<Aggregates
 {
     public UserByUserCredentialSpecification(UserCredentialValueObject credentails)
     {
-        Query.Where(user => user.UserCredentials.Equals(credentails));
+        Query.Where(user => user.UserCredentials.Username.Equals(credentails.Username)
+            && user.UserCredentials.Password.Equals(credentails.Password));
     }
 }
