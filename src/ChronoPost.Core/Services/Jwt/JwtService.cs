@@ -26,6 +26,7 @@ public sealed class JwtService : IJwtService
             new(JwtClaimNames.UserId.ToString(), payload.UserId.ToString()),
             new(JwtClaimNames.Username.ToString(), payload.Username)
             },
+
         expires: DateTime.Now.AddMinutes(_options.Value.ExpiresInMinutes), notBefore: DateTime.Now, signingCredentials: credentials);
 
         var tokenHandler = new JwtSecurityTokenHandler();
