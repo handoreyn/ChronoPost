@@ -19,5 +19,6 @@ public static class AssemblyReference
             .UseSqlServer(configuration.GetConnectionString("ChronoPostSqlConnectionString")));
 
         services.AddScoped<IReadRepository<User>, ReadRepository<User>>();
+        services.AddScoped<IRepository<User>, Repository<User>>();
     }
 }

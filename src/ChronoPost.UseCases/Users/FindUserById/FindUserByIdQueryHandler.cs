@@ -2,7 +2,7 @@ using Ardalis.SharedKernel;
 using ChronoPost.Core.Exceptions;
 using ChronoPost.Core.Specifications.User;
 
-namespace ChronoPost.UseCases.User.FindUserById;
+namespace ChronoPost.UseCases.Users.FindUserById;
 
 public sealed class FindUserByIdQueryHandler : IQueryHandler<FindUserByIdQuery, FindUserByIdQueryResponse>
 {
