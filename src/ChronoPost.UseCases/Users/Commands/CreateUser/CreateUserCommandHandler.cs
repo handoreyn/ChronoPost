@@ -2,7 +2,7 @@ using Ardalis.SharedKernel;
 using ChronoPost.Core.Enums;
 using ChronoPost.Core.Specifications.User;
 
-namespace ChronoPost.UseCases.Users.Commands;
+namespace ChronoPost.UseCases.Users.Commands.CreateUser;
 
 public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, CreateUserCommandResponse>
 {

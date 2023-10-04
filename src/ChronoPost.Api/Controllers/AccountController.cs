@@ -1,9 +1,9 @@
-using ChronoPost.UseCases.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ChronoPost.UseCases.Users.Queries.FindUserById;
 using ChronoPost.UseCases.Users.Queries.GenerateJwtToken;
 using Microsoft.AspNetCore.Authorization;
+using ChronoPost.UseCases.Users.Commands.CreateUser;
 
 namespace ChronoPost.Api.Controllers;
 
