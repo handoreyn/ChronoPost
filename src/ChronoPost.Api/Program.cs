@@ -7,6 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddJwt(builder.Configuration);
 builder.Services.RegisterInfraServices(builder.Configuration);
 builder.Services.AddUseCases();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("ChronoPostRedisConnectionString");
+    options.InstanceName = "SampleInstance";
+});
 
 
 var app = builder.Build();
