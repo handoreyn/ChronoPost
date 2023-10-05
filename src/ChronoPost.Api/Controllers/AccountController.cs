@@ -1,3 +1,4 @@
+using ChronoPost.Core.Services.Jwt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ChronoPost.UseCases.Users.Queries.FindUserById;
@@ -5,6 +6,7 @@ using ChronoPost.UseCases.Users.Queries.GenerateJwtToken;
 using Microsoft.AspNetCore.Authorization;
 using ChronoPost.UseCases.Users.Commands.CreateUser;
 using ChronoPost.UseCases.Users.Commands.UpdateUser;
+using ChronoPost.UseCases.Users.Queries.RefreshJwtToken;
 
 namespace ChronoPost.Api.Controllers;
 
@@ -52,4 +54,15 @@ public class AccountController : ControllerBase
         var result = await _mediator.Send(model, cancellationToken);
         return Ok(result);
     }
+    
+    [HttpGet("refresh-jwt-token")]
+    [AllowAnonymous]
+    public async Task<IActionResult> RefreshJwtToken([FromBody] TokeModel token, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new RefreshJwtTokenQuery(token.Token, User.ToUserClaims().UserId),
+            cancellationToken);
+        return Ok(result);
+    }
 }
+
+public record TokeModel(string Token);

@@ -2,7 +2,7 @@ using System.Security.Claims;
 
 namespace ChronoPost.Core.Services.Jwt;
 
-public record JwtPayload(long UserId, string Username);
+public record JwtPayload(int UserId, string Username);
 
 public static class JwtClaimExtension
 {

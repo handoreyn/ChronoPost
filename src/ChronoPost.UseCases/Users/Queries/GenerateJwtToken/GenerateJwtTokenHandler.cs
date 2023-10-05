@@ -29,10 +29,10 @@ public sealed class GenerateJwtTokenHandler : IQueryHandler<GenerateJwtTokenQuer
         var spec = new UserByUserCredentialSpecification(new UserCredentialValueObject(request.Username, request.Password));
         var user = await _repository.FirstOrDefaultAsync(spec, cancellationToken)
                    ?? throw new UserDoesNotExistException("Incorrect username or password! User does not exist");
-        
-        var token = _jwtService.GenerateAccessToken(new JwtPayload(user.Id, user.UserCredentials.Username));
+        var payload = new JwtPayload(user.Id, user.UserCredentials.Username);
+        var token = _jwtService.GenerateAccessToken(payload);
 
-        await _distributedCache.SetCacheAsync($"refreshToken-{user.Id}", token.RefreshToken,
+        await _distributedCache.SetCacheAsync($"refresh-token-{user.Id}", payload,
             TimeSpan.FromMinutes(_options.Value.RefreshTokenExpiresInMinutes),
             cancellationToken);
         

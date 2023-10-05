@@ -1,5 +1,4 @@
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace ChronoPost.Core.Extensions.CacheExtensions;
@@ -7,7 +6,7 @@ namespace ChronoPost.Core.Extensions.CacheExtensions;
 /// <summary>
 /// Defines extension methods for <c>IDistributedCache interface
 /// </summary>
-public static class DistrubutedCacheExtension
+public static class DistributedCacheExtension
 {
     /// <summary>
     /// Set cache with given key, data and cacheTime
