@@ -11,23 +11,4 @@ public sealed class User : EntityBase, IAggregateRoot
     public string Email { get; set; }
     public StatusType Status { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-    // [JsonConstructor]
-    // public User(string username, string password, string email, StatusType status = StatusType.Passive)
-    // {
-    //     Email = email;
-    //     Status = status;
-    //     UserCredentials = new UserCredentialValueObject(username, password);
-    //     CreatedAt = DateTime.UtcNow;
-    // }
-
-    // [JsonConstructor]
-    // public User(int id, UserCredentialValueObject credentials, string email, StatusType status, DateTime createdAt)
-    // {
-    //     Id = id;
-    //     UserCredentials = credentials;
-    //     Email = email;
-    //     Status = status;
-    //     CreatedAt = createdAt;
-    // }
 }
