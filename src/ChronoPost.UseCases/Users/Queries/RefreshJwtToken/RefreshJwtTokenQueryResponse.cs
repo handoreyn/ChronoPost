@@ -1,3 +1,3 @@
 namespace ChronoPost.UseCases.Users.Queries.RefreshJwtToken;
 
-public record RefreshJwtTokenQueryResponse(string AccessToken, string RefreshToken);
+public sealed record RefreshJwtTokenQueryResponse(string AccessToken, string RefreshToken);
