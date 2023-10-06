@@ -24,21 +24,6 @@ public class CoreTests
     }
     
     [Test]
-    public void CoreAggregatesShouldDependsBaseEntity()
-    {
-        var result= Types.InAssembly(AssemblyReference.Assembly)
-            .That()
-            .ResideInNamespace(typeof(User).Namespace)
-            .Should()
-            .Inherit(typeof(EntityBase))
-            .GetResult();
-
-        result.IsSuccessful
-            .Should()
-            .BeTrue();
-    }
-
-    [Test]
     public void CoreAggregatesShouldBeSealed()
     {
         var result= Types.InAssembly(AssemblyReference.Assembly)

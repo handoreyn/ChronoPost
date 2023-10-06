@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Ardalis.SharedKernel;
 using ChronoPost.Core.Enums;
 using ChronoPost.Core.ValueObjects;
