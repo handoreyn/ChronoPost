@@ -1,5 +1,7 @@
 using Ardalis.SharedKernel;
+using ChronoPost.Core.Aggregates;
 using ChronoPost.Core.Exceptions;
+using ChronoPost.Core.Specifications.User;
 using ChronoPost.UseCases.Users.Queries.FindUserById;
 using Moq;
 
@@ -8,41 +10,36 @@ namespace ChronoPost.UseCaseTests.User;
 [TestFixture]
 public class UserQueryTests
 {
-    private IReadRepository<Core.Aggregates.User> _readRepository;
-
-    [SetUp]
-    public void FindUserById_UserDoesExist_Setup()
-    {
-        var mock = new Mock<IReadRepository<Core.Aggregates.User>>();
-        var user = new Core.Aggregates.User
-        {
-            Id = 1,
-            UserCredentials = new Core.ValueObjects.UserCredentialValueObject("testuser", "password"),
-        };
-
-        mock.Setup(o => o.GetByIdAsync(1, CancellationToken.None))
-            .ReturnsAsync(user);
-
-        _readRepository = mock.Object;
-    }
+    private readonly Mock<IReadRepository<Core.Aggregates.User>> _readRepositoryMock = new();
 
     [Test]
-    [TestCase(1)]
-    public async Task FindUserById_UserDoesExist(int id)
+    public async Task FindUserById_UserDoesExist()
     {
-        var handler = new FindUserByIdQueryHandler(_readRepository);
-        var result = await handler.Handle(new FindUserByIdQuery(id), CancellationToken.None);
+        _readRepositoryMock.Setup(o => o.FirstOrDefaultAsync(It.IsAny<UserByIdSpecification>(), It.IsAny<CancellationToken>()))
+        .ReturnsAsync(new Core.Aggregates.User
+        {
+            Id = 1,
+            UserCredentials = new Core.ValueObjects.UserCredentialValueObject("handoreyn", "123456"),
+            Email = "fatihgencaslan@yahoo.com",
+            Status = Core.Enums.StatusType.Active,
+            CreatedAt = DateTime.UtcNow
+        });
+        var handler = new FindUserByIdQueryHandler(_readRepositoryMock.Object);
+        var result = await handler.Handle(new FindUserByIdQuery(It.IsAny<int>()), CancellationToken.None);
         Assert.That(result, Is.Not.Null);
 
     }
 
-    [TestCase(0)]
-    public void FindUserById_UserDoesNotExist(int userId)
+    [Test]
+    public void FindUserById_UserDoesNotExist()
     {
-        var handler = new FindUserByIdQueryHandler(_readRepository);
+        _readRepositoryMock.Setup(_ => _.FirstOrDefaultAsync(It.IsAny<UserByIdSpecification>(), It.IsAny<CancellationToken>()))
+        .ReturnsAsync(default(Core.Aggregates.User));
+
+        var handler = new FindUserByIdQueryHandler(_readRepositoryMock.Object);
         Assert.CatchAsync<UserDoesNotExistException>(async () =>
         {
-            await handler.Handle(new FindUserByIdQuery(userId), CancellationToken.None);
+            await handler.Handle(new FindUserByIdQuery(It.IsAny<int>()), CancellationToken.None);
         });
     }
 }

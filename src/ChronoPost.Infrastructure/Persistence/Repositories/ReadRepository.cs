@@ -1,8 +1,6 @@
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using ChronoPost.Infrastructure.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChronoPost.Infrastructure.Persistence.Repositories;
 

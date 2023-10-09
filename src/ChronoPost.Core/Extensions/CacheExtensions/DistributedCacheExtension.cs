@@ -26,14 +26,14 @@ public static class DistributedCacheExtension
         await cache.SetStringAsync(key, content, options, token: cancellationToken);
     }
 
-
-    public static async Task<T> GetFromCache<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default)
+    #nullable enable
+    public static async Task<T?> GetFromCache<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : class
     {
         var content = await cache.GetStringAsync(key, cancellationToken);
-
+        if (string.IsNullOrEmpty(content)) return null;
         var result = JsonSerializer.Deserialize<T>(content);
 
         return result;
     }
-    
+    #nullable disable
 }
