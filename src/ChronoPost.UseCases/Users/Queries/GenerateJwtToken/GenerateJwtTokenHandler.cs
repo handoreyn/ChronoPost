@@ -1,7 +1,8 @@
+using System.Security.Authentication;
+using System.Web;
 using Ardalis.SharedKernel;
 using ChronoPost.Core.Aggregates;
 using ChronoPost.Core.Aggregates.Events;
-using ChronoPost.Core.Exceptions;
 using ChronoPost.Core.Extensions.CacheExtensions;
 using ChronoPost.Core.Services.Jwt;
 using ChronoPost.Core.Specifications.User;
@@ -22,6 +23,7 @@ public sealed class GenerateJwtTokenHandler : IQueryHandler<GenerateJwtTokenQuer
 
     public GenerateJwtTokenHandler(IReadRepository<User> repository, IJwtService jwtService, IDistributedCache distributedCache, IOptions<JwtOptions> options, IPublisher publisher)
     {
+
         _repository = repository;
         _jwtService = jwtService;
         _distributedCache = distributedCache;
@@ -29,8 +31,19 @@ public sealed class GenerateJwtTokenHandler : IQueryHandler<GenerateJwtTokenQuer
         _publisher = publisher;
     }
 
-    public Task<GenerateJwtTokenQueryResponse> Handle(GenerateJwtTokenQuery request, CancellationToken cancellationToken)
+    public async Task<GenerateJwtTokenQueryResponse> Handle(GenerateJwtTokenQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var spec = new UserByUserCredentialSpecification(new UserCredentialValueObject(
+                request.Username, request.Password));
+
+        var user = await _repository.FirstOrDefaultAsync(spec, cancellationToken)
+            ?? throw new InvalidCredentialException();
+
+        var payload = new JwtPayload(user.Id, user.UserCredentials.Username);
+        var token = _jwtService.GenerateAccessToken(payload);
+
+        await _publisher.Publish(new UserAuthenticatedEvent(user.Id, token.RefreshToken, TimeSpan.FromMinutes(_options.Value.RefreshTokenExpiresInMinutes), payload), cancellationToken);
+
+        return new GenerateJwtTokenQueryResponse(token.AccessToken, HttpUtility.UrlEncode(token.RefreshToken));
     }
 }

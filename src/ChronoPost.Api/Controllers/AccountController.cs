@@ -54,13 +54,12 @@ public class AccountController : ControllerBase
         var result = await _mediator.Send(model, cancellationToken);
         return Ok(result);
     }
-    
+
     [HttpGet("refresh-jwt-token")]
     [AllowAnonymous]
-    public async Task<IActionResult> RefreshJwtToken([FromBody] TokeModel token, CancellationToken cancellationToken)
+    public async Task<IActionResult> RefreshJwtToken([FromQuery] string token, CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new RefreshJwtTokenQuery(token.Token, User.ToUserClaims().UserId),
-            cancellationToken);
+        var result = await _mediator.Send(new RefreshJwtTokenQuery(token), cancellationToken);
         return Ok(result);
     }
 }
